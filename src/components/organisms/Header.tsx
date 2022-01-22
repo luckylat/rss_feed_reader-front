@@ -20,6 +20,10 @@ export interface HeaderProps {
 
 const StyledDiv = styled.div`
   background-color: ${Color.main};
+  display: block;
+  position: absolute;
+  top: 0px;
+  left: 0px;
   width: 140px;
   height: 40px;
   margin: auto;
@@ -34,6 +38,7 @@ const Header: React.FC<HeaderProps> = (props) => {
     text: {
       display: "inline-block",
       height: "100%",
+      width: "100%",
       verticalAlign: "middle",
     },
   });
