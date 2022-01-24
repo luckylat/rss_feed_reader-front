@@ -1,10 +1,12 @@
 import axios from 'axios';
 
-const API_URL = 'localhost:8080/rss';
+axios.defaults.baseURL = 'http://localhost:8080';
+
+
 
 export const Getter = () => new Promise((resolve, reject) => {
   
-  axios.get(API_URL)
+  axios.get('/rss/select')
     .then((res) => {
       resolve(res);
       return;
@@ -12,8 +14,15 @@ export const Getter = () => new Promise((resolve, reject) => {
     .catch((e) => reject(e));
 });
 
-export const Poster = (URL: string) => new Promise((resolve, reject) => {
-  axios.post(API_URL,URL).then((res) => {
+export const Adder = (URL: string) => new Promise((resolve, reject) => {
+  axios.post('/rss/insert',URL).then((res) => {
+    resolve(res);
+    return;
+  }).catch((e) => reject(e));
+})
+
+export const Deleter = (URL: string) => new Promise((resolve, reject) => {
+  axios.post('/rss/delete',URL).then((res) => {
     resolve(res);
     return;
   }).catch((e) => reject(e));

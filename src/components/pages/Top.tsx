@@ -8,7 +8,7 @@ import Header from '../organisms/Header'
 import Form from '../atoms/Form'
 import Button from '../atoms/Button'
 
-import {Poster, Getter} from '../../utils/Connecter';
+import {Adder, Deleter, Getter} from '../../utils/Connecter';
 
 const StyledDiv = styled.div`
   height: calc(100vh - 140px);
@@ -20,7 +20,7 @@ function Top() {
   const AddRSSFeed = () => {
     const AddURL = RSSFeedURL.current?.value;
     if(AddURL){
-      Poster(AddURL).then((res) => {
+      Adder(AddURL).then((res) => {
         window.alert(`Added URL! "${AddURL}" (It's not fact now)`)
       })
       .catch((e) => window.alert("something error."))
@@ -28,8 +28,8 @@ function Top() {
       window.alert("No data in the Form")
     }
     
-
   }
+
   
 
 
