@@ -1,14 +1,20 @@
 import axios from 'axios';
 
-const Fetcher = (UserName: string) => new Promise((resolve, reject) => {
-  const API_BASE_URL = 'localhost:8080/rss';
-  const today = new Date().toLocaleDateString();
-  const submission = new Set();
-  let submitted = false;
-  axios
-    .get(API_BASE_URL)
+const API_URL = 'localhost:8080/rss';
+
+export const Getter = () => new Promise((resolve, reject) => {
+  
+  axios.get(API_URL)
     .then((res) => {
-      
+      resolve(res);
+      return;
     })
     .catch((e) => reject(e));
 });
+
+export const Poster = (URL: string) => new Promise((resolve, reject) => {
+  axios.post(API_URL,URL).then((res) => {
+    resolve(res);
+    return;
+  }).catch((e) => reject(e));
+})

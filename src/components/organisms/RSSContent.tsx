@@ -30,11 +30,6 @@ const RSSContent = (props: RSSContentProps) => {
     image,
     URL
   } = props;
-  const{
-    imageURL,
-    imageWidth,
-    imageHeight
-  } = image;
   return(
     <>
       <RSSForm>
