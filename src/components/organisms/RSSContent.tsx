@@ -10,6 +10,8 @@ import { faMinusCircle } from '@fortawesome/free-solid-svg-icons'
 import Text from '../atoms/Text';
 import Image from '../atoms/Image'
 
+import {Deleter} from '../../utils/Connecter';
+
 
 library.add(faMinusCircle);
 
@@ -22,14 +24,14 @@ export interface RSSContentProps {
 
 
 const RSSForm = styled.div`
-  height: 200px;
-  width: 200px;
+  height: 300px;
+  width: 250px;
   background-color: #eeeeee;
 `;
 
 const DeleteDiv = styled.div`
   position: relative;
-  left: 180px;
+  left: 230px;
   top: 0px;
 `
 
@@ -44,17 +46,27 @@ const RSSContent = (props: RSSContentProps) => {
     image,
     URL,
     fromURL,
+    
   } = props;
+
+  const DeleteAction = (fromURL: string) => {
+    if(window.confirm("このRSSリンクを削除しますか? : " + fromURL)){
+      Deleter(fromURL).then((element) => {
+        window.alert("Sucess!")
+      }).catch((e) => console.log(e));
+    }
+  }
+
   return(
     <>
       
       <RSSForm>
-        <DeleteDiv>
+        <DeleteDiv onClick={(() => DeleteAction(fromURL))}>
           <FontAwesomeIcon icon="minus-circle" />
         </DeleteDiv>
         <StyledA href={URL}>
-          <Image imageElement={image} imageHeight={120} imageWidth={120} />
-          <Text value={title} size={16} color={"#000000"} height={60}/>
+          <Image imageElement={image} imageHeight={200} imageWidth={250} />
+          <Text value={title} size={16} color={"#000000"} height={100}/>
         </StyledA>
       </RSSForm>
     </>
