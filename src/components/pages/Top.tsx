@@ -39,9 +39,10 @@ function Top() {
       await Getter().then((res:any) => {
 
         res.data.map((element: any, index: number) => {
+          console.log(element.Image);
           tmp.push(
             <Grid item xs={3}>
-              <RSSContent title={element.Title} URL={element.Link}/>
+              <RSSContent title={element.Title} URL={element.Link} fromURL={element.Rss} image={element.Image}/>
             </Grid>
           );
           if(index%3 === 2 && index !== 0){

@@ -6,6 +6,7 @@ export interface TextProps {
   value: string;
   size?: number;
   color?: string;//後でどうにかする
+  height?: number;
 }
 
 function Text(props: TextProps) {
@@ -13,13 +14,14 @@ function Text(props: TextProps) {
     value,
     size,
     color,
+    height,
   } = props;
   const useStyles = () => makeStyles({
     title: {
       fontSize: size || 24,
       textAlign: 'center',
       color: color || "#ffffff",
-      height: "100%",
+      height: height || 100,
     },
   });
   const classes = useStyles()();
