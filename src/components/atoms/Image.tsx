@@ -2,14 +2,15 @@ import * as React from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-export interface image{
-  imageURL?: any //後で確認(とりあえずURLを指定する)
+
+export interface ImageProps {
+  imageURL: string
   imageWidth?: number
   imageHeight?: number
 }
 
-export interface ImageProps {
-  image: image
+export const defaultimage:ImageProps = {
+  imageURL: 'https://1.bp.blogspot.com/-vsrjLB8Wyng/YEGP_R749_I/AAAAAAABdck/-khfythfWqU5wb6X4FzfzeaJVhIztvByACNcBGAsYHQ/s180-c/buranko_boy_sad.png'
 }
 
 function Image(props: ImageProps) {
@@ -17,7 +18,7 @@ function Image(props: ImageProps) {
     imageURL,
     imageWidth,
     imageHeight,
-  } = props.image;
+  } = props;
   const useStyles = () => makeStyles({
     image: {
       display: "block",

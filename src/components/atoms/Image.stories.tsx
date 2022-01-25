@@ -11,7 +11,7 @@ const Template: Story<ImageProps> = (args) => <Image {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  image: {
-    imageURL: "https://1.bp.blogspot.com/-vsrjLB8Wyng/YEGP_R749_I/AAAAAAABdck/-khfythfWqU5wb6X4FzfzeaJVhIztvByACNcBGAsYHQ/s180-c/buranko_boy_sad.png",
-  }
+  imageURL: "https://1.bp.blogspot.com/-vsrjLB8Wyng/YEGP_R749_I/AAAAAAABdck/-khfythfWqU5wb6X4FzfzeaJVhIztvByACNcBGAsYHQ/s180-c/buranko_boy_sad.png",
+  imageHeight: 128,
+  imageWidth: 128
 };

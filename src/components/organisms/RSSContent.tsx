@@ -4,24 +4,27 @@ import styled from 'styled-components';
 import {makeStyles} from '@material-ui/core'
 
 import Text from '../atoms/Text';
-import Image, { image } from '../atoms/Image'
+import Image, {defaultimage } from '../atoms/Image'
 
 
 
 
 export interface RSSContentProps {
   title: string
-  image: image
-  URL?: string
+  image?: string
+  URL: string
 }
 
 
 const RSSForm = styled.div`
   height: 200px;
   width: 200px;
-  background-color: #000000;
+  background-color: #eeeeee;
 `;
 
+const StyledA = styled.a`
+  text-decoration: none;
+`
 
 
 const RSSContent = (props: RSSContentProps) => {
@@ -33,10 +36,10 @@ const RSSContent = (props: RSSContentProps) => {
   return(
     <>
       <RSSForm>
-        <a href={URL}>
-          <Image image={image} />
-          <Text value={title} size={16} />
-        </a>
+        <StyledA href={URL}>
+          <Image imageURL={image || defaultimage.imageURL} imageHeight={128} imageWidth={128} />
+          <Text value={title} size={16} color={"#000000"} />
+        </StyledA>
       </RSSForm>
     </>
   )

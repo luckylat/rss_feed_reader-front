@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import { Grid } from '@material-ui/core';
 
 import Header from '../organisms/Header'
+import RSSContent from '../organisms/RSSContent'
 
 import Form from '../atoms/Form'
 import Button from '../atoms/Button'
@@ -30,16 +31,45 @@ function Top() {
     
   }
 
-  
+  const [shownData, setShownData] = useState(<div></div>)
+  useEffect(() => {
+    const f = async () => {
+      const ret:any = [];
+      let tmp:any = [];
+      await Getter().then((res:any) => {
 
-
-  const ShownData = Getter().then((res:any) => {
-    const formatter = res.parse().map((element:any) => {
-      
-    })
-    return formatter;
-  })
-
+        res.data.map((element: any, index: number) => {
+          tmp.push(
+            <Grid item xs={3}>
+              <RSSContent title={element.Title} URL={element.Link}/>
+            </Grid>
+          );
+          if(index%3 === 2 && index !== 0){
+            ret.push(
+              <Grid container spacing={2} justifyContent="center">
+                {Array(3).fill(null).map((_,j:number) => {
+                  return tmp[j];
+                })}
+              </Grid>
+            )
+            tmp = []
+          }
+        })
+        ret.push(
+          <Grid container spacing={2} justifyContent="center">
+            {Array(tmp.length).fill(null).map((_,j:number) => {
+              return tmp[j];
+            })}
+          </Grid>
+        )
+        
+        setShownData(ret);
+        console.log(shownData);
+      })
+    }
+    console.log("change");
+    f();
+  },[])
   
 
   return (
@@ -48,15 +78,14 @@ function Top() {
       <StyledDiv>
         {/* Form追加 */}
         <Grid container spacing={0}>
-          <Grid item xs={12} style={{ textAlign:'center', marginTop: '50px' }}>
+          <Grid item xs={12} style={{ textAlign:'center', marginTop: '50px', marginBottom: '50px' }}>
             <Form ref={RSSFeedURL} placeholder='URL' />
             <Button label='Add' action={() => {AddRSSFeed()}} />
           </Grid>
         </Grid>
         
         {/* RSSContentをfor文で配置する */}
-        {/* {ShownData} */}
-
+        {shownData}
 
 
       </StyledDiv>
